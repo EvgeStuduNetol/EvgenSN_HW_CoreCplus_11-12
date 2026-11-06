@@ -8,33 +8,42 @@ int main()
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    std::ifstream file("in.txt");
-
-    
-    if (!file.is_open()) 
-    {
-        std::cout << "Ошибка: файл не найден!" << std::endl;
-        return 1;  
-    }
-
     int size;
-    file >> size;
+    std::cout << "Введите размер массива: ";
+    std::cin >> size;
 
     int* arr = new int[size];
 
     for (int i = 0; i < size; i++) 
     {
-        file >> arr[i];
+        std::cout << "arr[" << i << "] = ";
+        std::cin >> arr[i];
     }
+
+    std::ofstream file("out.txt");
+
+    if (!file.is_open()) 
+    {
+        std::cout << "Ошибка: не удалось создать файл!" << std::endl;
+
+        delete[] arr;
+
+        return 1;
+    }
+
+    file << size << std::endl;
 
     for (int i = size - 1; i >= 0; i--) 
     {
-        std::cout << arr[i] << " ";
+        file << arr[i] << " ";
     }
-    std::cout << std::endl;
+    file << std::endl;
+
+    file.close();
 
     delete[] arr;
-    file.close();
+
+    std::cout << "Массив записан в файл out.txt" << std::endl;
 
     return 0;
 }
