@@ -2,48 +2,53 @@
 #include <fstream>
 #include <windows.h>
 
-
 int main() 
 {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    int size;
-    std::cout << "Введите размер массива: ";
-    std::cin >> size;
-
-    int* arr = new int[size];
-
-    for (int i = 0; i < size; i++) 
-    {
-        std::cout << "arr[" << i << "] = ";
-        std::cin >> arr[i];
-    }
-
-    std::ofstream file("out.txt");
+    std::ifstream file("in.txt");
 
     if (!file.is_open()) 
     {
-        std::cout << "Ошибка: не удалось создать файл!" << std::endl;
-
-        delete[] arr;
-
+        std::cout << "Ошибка: файл не найден!" << std::endl;
         return 1;
     }
 
-    file << size << std::endl;
+    int rows, cols;
+    file >> rows >> cols;
 
-    for (int i = size - 1; i >= 0; i--) 
+    int** arr = new int* [rows];
+    for (int i = 0; i < rows; i++) 
     {
-        file << arr[i] << " ";
+        arr[i] = new int[cols];
     }
-    file << std::endl;
 
-    file.close();
+    for (int i = 0; i < rows; i++) 
+    {
+        for (int j = 0; j < cols; j++) 
+        {
+            file >> arr[i][j];
+        }
+    }
+
+    for (int i = 0; i < rows; i++) 
+    {
+        for (int j = cols - 1; j >= 0; j--) 
+        {
+            std::cout << arr[i][j] << "\t";
+        }
+        std::cout << std::endl;
+    }
+
+    for (int i = 0; i < rows; i++) 
+    {
+        delete[] arr[i];
+    }
 
     delete[] arr;
 
-    std::cout << "Массив записан в файл out.txt" << std::endl;
+    file.close();
 
     return 0;
 }
