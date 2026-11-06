@@ -1,58 +1,31 @@
-/*#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <fstream>
 #include <windows.h>
-#include <cstring>
+#include <string>
 
 int main() 
 {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    const char* secretWord = "малина";
-    char guess[50];
+    std::ifstream file("in.txt");
 
-    do 
+    
+    if (!file.is_open()) 
     {
-        std::cout << "Угадайте слово: ";
-        std::cin >> guess;
+        std::cout << "Ошибка: файл не найден!" << std::endl;
+        return 1;  
+    }
 
-        if (strcmp(guess, secretWord) == 0) {
-            std::cout << "Правильно! Вы победили! Загаданное слово — " << secretWord << std::endl;
-        }
-        else 
-        {
-            std::cout << "Неправильно" << std::endl;
-        }
+    
+    std::string word;
+    while (file >> word) 
+    {  
+        std::cout << word << std::endl;
+    }
 
-    } while (strcmp(guess, secretWord) != 0);
-
-    return 0;
-}
-*/
-
-#include <iostream>
-#include <windows.h>
-#include <string>
-
-int main() {
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
-
-    std::string secretWord = "малина";
-    std::string guess;
-
-    do {
-        std::cout << "Угадайте слово: ";
-        std::cin >> guess;
-
-        if (guess == secretWord) {
-            std::cout << "Правильно! Вы победили! Загаданное слово — " << secretWord << std::endl;
-        }
-        else {
-            std::cout << "Неправильно" << std::endl;
-        }
-
-    } while (guess != secretWord);
+    
+    file.close();
 
     return 0;
 }
