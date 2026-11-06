@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="EvgenSN_HW_CoreCplus_11-12.vcxproj" />
+</Solution>
