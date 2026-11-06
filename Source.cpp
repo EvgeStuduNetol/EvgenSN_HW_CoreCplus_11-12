@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <windows.h>
-#include <string>
+
 
 int main() 
 {
@@ -17,14 +17,23 @@ int main()
         return 1;  
     }
 
-    
-    std::string word;
-    while (file >> word) 
-    {  
-        std::cout << word << std::endl;
+    int size;
+    file >> size;
+
+    int* arr = new int[size];
+
+    for (int i = 0; i < size; i++) 
+    {
+        file >> arr[i];
     }
 
-    
+    for (int i = size - 1; i >= 0; i--) 
+    {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    delete[] arr;
     file.close();
 
     return 0;
