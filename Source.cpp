@@ -1,35 +1,35 @@
-//HomeWork C++ #11.1
-
-#define _CRT_SECURE_NO_WARNINGS
+/*#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <windows.h>
 #include <cstring>
 
-int main() {
+int main() 
+{
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    char firstName[50], lastName[50];
-    char greeting[150];
+    const char* secretWord = "малина";
+    char guess[50];
 
-    std::cout << "Введите имя: ";
-    std::cin >> firstName;
+    do 
+    {
+        std::cout << "Угадайте слово: ";
+        std::cin >> guess;
 
-    std::cout << "Введите фамилию: ";
-    std::cin >> lastName;
+        if (strcmp(guess, secretWord) == 0) {
+            std::cout << "Правильно! Вы победили! Загаданное слово — " << secretWord << std::endl;
+        }
+        else 
+        {
+            std::cout << "Неправильно" << std::endl;
+        }
 
-    strcpy(greeting, "Здравствуйте, ");
-    strcat(greeting, firstName);
-    strcat(greeting, " ");
-    strcat(greeting, lastName);
-    strcat(greeting, "!");
-
-    std::cout << greeting << std::endl;
+    } while (strcmp(guess, secretWord) != 0);
 
     return 0;
 }
+*/
 
-/*
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -38,20 +38,21 @@ int main() {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    std::string firstName, lastName;
+    std::string secretWord = "малина";
+    std::string guess;
 
-    std::cout << "Введите имя: ";
-    std::cin >> firstName;
+    do {
+        std::cout << "Угадайте слово: ";
+        std::cin >> guess;
 
-    std::cout << "Введите фамилию: ";
-    std::cin >> lastName;
+        if (guess == secretWord) {
+            std::cout << "Правильно! Вы победили! Загаданное слово — " << secretWord << std::endl;
+        }
+        else {
+            std::cout << "Неправильно" << std::endl;
+        }
 
-    // Конкатенация (склеивание) строк через оператор +
-    std::string greeting = "Здравствуйте, " + firstName + " " + lastName + "!";
-
-    std::cout << greeting << std::endl;
+    } while (guess != secretWord);
 
     return 0;
 }
-*/
-
